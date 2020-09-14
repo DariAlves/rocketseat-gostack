@@ -1,18 +1,17 @@
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
-import AppointmentsRepository from '../../../../modules/appointments/repositories/AppointmentsRepository';
-import CreateAppointmentService from '../../../../modules/appointments/services/CreateAppointmentService';
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
+import AppointmentsRepository from '@modules/appointments/repositories/AppointmentsRepository';
+import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
+
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const appointmentsRouter = Router();
 
-// Irá aplicar o ensureAuthenticated em todas as rotas
 appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get('/', async (request, response) => {
-  console.log(request.user);
-
   const appointmentRepository = getCustomRepository(AppointmentsRepository);
   const appointments = await appointmentRepository.find();
 

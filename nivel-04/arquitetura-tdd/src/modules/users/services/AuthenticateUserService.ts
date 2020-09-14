@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import authConfig from '../../../config/auth';
-import AppError from '../../../shared/errors/AppError';
+import authConfig from '@config/auth';
+import AppError from '@shared/errors/AppError';
 
 import User from '../infra/typeorm/entities/User';
 
@@ -25,11 +25,6 @@ class AuthenticateUserService {
     if (!user) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
-
-    /*
-      user.password - Senha criptografada
-      password - Senha não-criptografada
-    */
 
     const passwordMatched = await compare(password, user.password);
 
