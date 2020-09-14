@@ -1,1 +1,8 @@
 node_modules/
+
+notes2.md
+
+.vscode/
+
+tmp/*
+!tmp/.gitkeep
