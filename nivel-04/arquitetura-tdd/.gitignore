@@ -6,3 +6,5 @@ notes2.md
 
 tmp/*
 !tmp/.gitkeep
+
+README_.md
